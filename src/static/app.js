@@ -51,11 +51,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const themeSettings = {
     light: {
       icon: "🌙",
-      label: "Dark mode",
+      label: "Use dark mode",
     },
     dark: {
       icon: "☀️",
-      label: "Light mode",
+      label: "Use light mode",
     },
   };
 
@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
     themeToggleIcon.textContent = themeSetting.icon;
     themeToggleLabel.textContent = themeSetting.label;
     themeToggle.setAttribute("aria-pressed", String(nextTheme === "dark"));
-    themeToggle.setAttribute("aria-label", `Theme: ${nextTheme} mode`);
+    themeToggle.setAttribute("aria-label", "Switch theme");
     localStorage.setItem("themePreference", nextTheme);
   }
 
