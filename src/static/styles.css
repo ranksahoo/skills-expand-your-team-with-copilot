@@ -50,6 +50,26 @@ body {
   font-size: 0.9rem;
 }
 
+body[data-theme="dark"] {
+  --primary: #1d4ed8;
+  --primary-light: #2563eb;
+  --primary-dark: #1e40af;
+  --secondary: #f59e0b;
+  --secondary-light: #fbbf24;
+  --secondary-dark: #d97706;
+  --background: #111827;
+  --surface: #1f2937;
+  --text-primary: #f9fafb;
+  --text-secondary: #d1d5db;
+  --border: #374151;
+  --border-light: #4b5563;
+  --border-focus: #6b7280;
+  --success-light: #1f3b2b;
+  --warning-light: #4a3310;
+  --error-light: #4a1d1f;
+  --info-light: #16303a;
+}
+
 header {
   text-align: center;
   padding: 12px 0;
@@ -626,6 +646,9 @@ footer {
 #user-status {
   display: flex;
   align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 #user-info {
@@ -652,6 +675,16 @@ footer {
 
 .icon-button:hover {
   background-color: rgba(255, 255, 255, 0.3);
+}
+
+body[data-theme="dark"] .icon-button,
+body[data-theme="dark"] #logout-button {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+body[data-theme="dark"] .icon-button:hover,
+body[data-theme="dark"] #logout-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .user-icon {
