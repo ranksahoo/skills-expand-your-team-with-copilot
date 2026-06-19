@@ -25,6 +25,8 @@ def init_database():
         for name, details in initial_activities.items():
             activities_collection.insert_one({"_id": name, **details})
     else:
+        # Keep seeded local activity records aligned when an existing dev database
+        # was created before difficulty levels were introduced.
         difficulty_activities = [
             (name, details["difficulty_level"])
             for name, details in initial_activities.items()
@@ -37,11 +39,7 @@ def init_database():
             )
             for name, difficulty_level in difficulty_activities
         ]
-        needs_difficulty_update = activities_collection.count_documents({
-            "_id": {"$in": [name for name, _ in difficulty_activities]},
-            "difficulty_level": {"$exists": False}
-        })
-        if difficulty_updates and needs_difficulty_update:
+        if difficulty_updates:
             activities_collection.bulk_write(difficulty_updates, ordered=False)
             
     # Initialize teacher accounts if empty
