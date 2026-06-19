@@ -119,7 +119,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     currentTheme = nextTheme;
     document.body.dataset.theme = nextTheme;
-    themeToggle.dataset.theme = nextTheme;
     themeToggleIcon.textContent = themeSetting.icon;
     themeToggleLabel.textContent = themeSetting.label;
     themeToggle.setAttribute("aria-pressed", String(nextTheme === "dark"));
@@ -129,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function initializeTheme() {
     const savedTheme = localStorage.getItem("themePreference");
-    applyTheme(savedTheme);
+    applyTheme(savedTheme === "dark" ? "dark" : "light");
   }
 
   // Check if user is already logged in (from localStorage)
