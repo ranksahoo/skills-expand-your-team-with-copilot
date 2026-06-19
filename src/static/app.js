@@ -456,7 +456,7 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         }
       } else if (difficultyLevel) {
-        // "All Levels" only shows activities without a specific difficulty.
+        // "Open to All Levels" only shows activities without a specific difficulty.
         return;
       }
 

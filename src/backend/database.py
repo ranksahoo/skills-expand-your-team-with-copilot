@@ -25,20 +25,20 @@ def init_database():
         for name, details in initial_activities.items():
             activities_collection.insert_one({"_id": name, **details})
     else:
-        difficulty_activity_names = [
-            name for name, details in initial_activities.items()
+        difficulty_activities = [
+            (name, details["difficulty_level"])
+            for name, details in initial_activities.items()
             if "difficulty_level" in details
         ]
         difficulty_updates = [
             UpdateOne(
                 {"_id": name, "difficulty_level": {"$exists": False}},
-                {"$set": {"difficulty_level": details["difficulty_level"]}}
+                {"$set": {"difficulty_level": difficulty_level}}
             )
-            for name, details in initial_activities.items()
-            if "difficulty_level" in details
+            for name, difficulty_level in difficulty_activities
         ]
         needs_difficulty_update = activities_collection.count_documents({
-            "_id": {"$in": difficulty_activity_names},
+            "_id": {"$in": [name for name, _ in difficulty_activities]},
             "difficulty_level": {"$exists": False}
         })
         if difficulty_updates and needs_difficulty_update:
