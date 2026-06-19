@@ -572,7 +572,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="share-section">
         <button class="share-toggle-button" aria-label="Share this activity">📤 Share</button>
         <div class="share-options hidden">
-          <a class="share-option share-twitter" href="#" target="_blank" rel="noopener noreferrer">𝕏 Twitter</a>
+          <a class="share-option share-twitter-x" href="#" target="_blank" rel="noopener noreferrer">𝕏 Twitter/X</a>
           <a class="share-option share-whatsapp" href="#" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
           <button class="share-option share-copy">🔗 Copy Link</button>
         </div>
@@ -602,10 +602,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const shareUrl = window.location.href;
 
     // Build share URLs
-    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText + "\n" + shareUrl)}`;
+    const xUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText + "\n" + shareUrl)}`;
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareText + "\n" + shareUrl)}`;
 
-    activityCard.querySelector(".share-twitter").href = twitterUrl;
+    activityCard.querySelector(".share-twitter-x").href = xUrl;
     activityCard.querySelector(".share-whatsapp").href = whatsappUrl;
 
     shareToggle.addEventListener("click", (event) => {

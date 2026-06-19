@@ -519,12 +519,12 @@ button {
   white-space: nowrap;
 }
 
-.share-twitter {
+.share-twitter-x {
   background-color: #000000;
   color: #ffffff;
 }
 
-.share-twitter:hover {
+.share-twitter-x:hover {
   background-color: #333333;
 }
 
