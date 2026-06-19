@@ -2,7 +2,7 @@
 MongoDB database configuration and setup for Mergington High School API
 """
 
-from pymongo import MongoClient
+from pymongo import MongoClient, UpdateOne
 from argon2 import PasswordHasher
 
 # Connect to MongoDB
@@ -25,12 +25,16 @@ def init_database():
         for name, details in initial_activities.items():
             activities_collection.insert_one({"_id": name, **details})
     else:
-        for name, details in initial_activities.items():
-            if "difficulty_level" in details:
-                activities_collection.update_one(
-                    {"_id": name, "difficulty_level": {"$exists": False}},
-                    {"$set": {"difficulty_level": details["difficulty_level"]}}
-                )
+        difficulty_updates = [
+            UpdateOne(
+                {"_id": name, "difficulty_level": {"$exists": False}},
+                {"$set": {"difficulty_level": details["difficulty_level"]}}
+            )
+            for name, details in initial_activities.items()
+            if "difficulty_level" in details
+        ]
+        if difficulty_updates:
+            activities_collection.bulk_write(difficulty_updates, ordered=False)
             
     # Initialize teacher accounts if empty
     if teachers_collection.count_documents({}) == 0:
