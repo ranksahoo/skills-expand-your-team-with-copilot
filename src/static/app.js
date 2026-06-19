@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
     themeToggleIcon.textContent = themeSetting.icon;
     themeToggleLabel.textContent = themeSetting.label;
     themeToggle.setAttribute("aria-pressed", String(nextTheme === "dark"));
-    themeToggle.setAttribute("aria-label", `Switch to ${themeSetting.label.toLowerCase()}`);
+    themeToggle.setAttribute("aria-label", `Theme: ${nextTheme} mode`);
     localStorage.setItem("themePreference", nextTheme);
   }
 
